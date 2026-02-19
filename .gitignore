@@ -1,0 +1,56 @@
+# .venv/
+# .env
+# __pycache__/
+# .pytest_cache/
+# reports/
+
+# ==============================
+# Python
+# ==============================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# virtual environment
+.venv/
+venv/
+env/
+
+# pytest
+.pytest_cache/
+.cache/
+
+# reports
+reports/
+allure-results/
+allure-report/
+
+# environment variables (secrets)
+.env
+.env.*
+
+# logs
+*.log
+
+# VS Code
+.vscode/
+
+# Mac / Windows junk
+.DS_Store
+Thumbs.db
+
+# coverage
+.coverage
+htmlcov/
+
+# mypy / pyright
+.mypy_cache/
+.pyright/
+
+# IDE
+.idea/
+
+# build
+dist/
+build/
+*.egg-info/
