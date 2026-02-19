@@ -14,11 +14,27 @@ def token(api):
     return body.get("token") or body.get("access_token")
 
 @pytest.fixture(scope="session")
-# def authed_api(api, token):
-#     api.set_bearer_token(token)
-#     return api
+def authed_api(api, token):
+    api.set_bearer_token(token)
+    return api
 
-def authed_api(token):
-    client = APIClient()
-    client.set_bearer_token(token)
-    return client
+# def authed_api(token):
+#     client = APIClient()
+#     client.set_bearer_token(token)
+#     return client
+
+@pytest.fixture(scope="session")
+def robot_id(authed_api):
+    resp = authed_api.get("/users/robots")
+    resp.raise_for_status()
+
+    robots = resp.json()
+    assert robots, "No robot returned from /users/robots"
+
+    first = robots[0]
+    rid = first.get("id") or first.get("robot_id") or first.get("robotId")
+    assert rid, f"Cannot find robot id in: {first}"
+    return str(rid)
+
+
+
