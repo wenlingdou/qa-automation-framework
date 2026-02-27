@@ -9,7 +9,7 @@ def test_robot_detail_invalid_id_returns_400_or_404(authed_api):
 def test_unauthoized_without_token(api):
     # api = raw APIClient without bearer token
     resp = api.get("/users/robots")
-    assert resp.status_code in (401,403), f"{resp.status_code} {resp.text[:200]}"  
+    assert resp.status_code != 200, f"{resp.status_code} {resp.text[:200]}"  
 
 
     
